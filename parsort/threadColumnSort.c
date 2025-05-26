@@ -1,5 +1,6 @@
 #include <math.h>
 #include <pthread.h>
+/* #include <stdint.h> */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -162,8 +163,9 @@ void *columnSortHelper(void *args)
 
 	/* Step 8: shift tmp left by r/2 into A */
 	shiftLeft(td->tmp + td->offset, td->row, td->r);
-	/* Wait for other threads */
-	barrier(td->arrive, td->numThreads, td->i);
+
+	/* /\* Wait for other threads *\/ */
+	/* barrier(td->arrive, td->numThreads, td->i); */
 
 	return NULL;
 }
@@ -181,7 +183,7 @@ void columnSort(int *A, int numThreads, int r, int s, double *elapsed)
 	    numThreads; /* Matrix is now reshaped to numThread rows and r columns */
 	/* Initialize temporary matrix for transpose and shift operations */
 	/* Note that (s + 1) is to support shifted matrix */
-	int *tmp = malloc((size_t)r * (s + 1) * sizeof(int));
+	int *tmp = malloc((size_t)r * (numThreads + 1) * sizeof(int));
 
 	/* Dissemination barrier */
 	volatile int arrive[numThreads];
