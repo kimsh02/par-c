@@ -1,7 +1,11 @@
 # Sum
 
-[View the PDF results](./sum/sum.pdf)
+- Sequential versus threaded sum of array of values.
+
+- [View the PDF results.](./sum/sum.pdf)
 
 # Parsort
 
-[View the PDF results](./parsort/results.pdf)
+- Sequential versus threaded sorting of 2D matrix of values.
+
+- [View the PDF results.](./parsort/results.pdf)
